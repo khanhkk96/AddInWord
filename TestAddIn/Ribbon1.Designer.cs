@@ -34,14 +34,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl1 = this.Factory.CreateRibbonDropDownItem();
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl2 = this.Factory.CreateRibbonDropDownItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
+            this.btnAddTagList = this.Factory.CreateRibbonButton();
             this.cboTag = this.Factory.CreateRibbonComboBox();
             this.btnInsertText = this.Factory.CreateRibbonButton();
-            this.btnAddTagList = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -55,16 +55,23 @@
             // 
             // group1
             // 
+            this.group1.Items.Add(this.btnAddTagList);
             this.group1.Items.Add(this.cboTag);
             this.group1.Items.Add(this.btnInsertText);
-            this.group1.Items.Add(this.btnAddTagList);
             this.group1.Label = "Gán thẻ dữ liệu";
             this.group1.Name = "group1";
             // 
+            // btnAddTagList
+            // 
+            this.btnAddTagList.Image = ((System.Drawing.Image)(resources.GetObject("btnAddTagList.Image")));
+            this.btnAddTagList.Label = "Thêm thẻ";
+            this.btnAddTagList.Name = "btnAddTagList";
+            this.btnAddTagList.ShowImage = true;
+            this.btnAddTagList.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAddTagList_Click);
+            // 
             // cboTag
             // 
-            ribbonDropDownItemImpl1.Label = "A Ă Á";
-            ribbonDropDownItemImpl2.Label = "B Ba Bì";
+            ribbonDropDownItemImpl1.Label = "--Thêm thẻ dữ liệu--";
             this.cboTag.Items.Add(ribbonDropDownItemImpl1);
             this.cboTag.Items.Add(ribbonDropDownItemImpl2);
             this.cboTag.Label = "Thẻ";
@@ -78,14 +85,6 @@
             this.btnInsertText.Name = "btnInsertText";
             this.btnInsertText.ShowImage = true;
             this.btnInsertText.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnInsertText_Click);
-            // 
-            // btnAddTagList
-            // 
-            this.btnAddTagList.Image = ((System.Drawing.Image)(resources.GetObject("btnAddTagList.Image")));
-            this.btnAddTagList.Label = "Thêm thẻ";
-            this.btnAddTagList.Name = "btnAddTagList";
-            this.btnAddTagList.ShowImage = true;
-            this.btnAddTagList.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAddTagList_Click);
             // 
             // Ribbon1
             // 
