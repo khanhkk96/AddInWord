@@ -1,14 +1,11 @@
-﻿using Word = Microsoft.Office.Interop.Word;
-using Excel = Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Word;
 using Microsoft.Office.Tools.Ribbon;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Office.Interop.Word;
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
+using System.Text;
+using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace TestAddIn
 {
@@ -50,7 +47,7 @@ namespace TestAddIn
             Word.Range rng = Application.ActiveDocument.Range(start, end);
             rng.Select();
             string selectedTag = cboTag.Text;
-            if(selectedTag != "")
+            if (selectedTag != "")
             {
                 string value = selectedTag.Replace("*", "").Trim().Replace(" ", "_");
                 rng.Text = $"{{{convertToUnSign2(value).ToLower()}}}";
@@ -85,8 +82,9 @@ namespace TestAddIn
                         cboTag.Items.Add(item);
                     }
                 }
-                catch (Exception ex) {
-                   Console.WriteLine(ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
                 finally
                 {
@@ -95,17 +93,17 @@ namespace TestAddIn
                     GC.WaitForPendingFinalizers();
 
                     //release com objects to fully kill excel process from running in the background
-                    if(xlRange != null)
+                    if (xlRange != null)
                     {
                         Marshal.ReleaseComObject(xlRange);
                     }
-                    if(xlWorksheet != null)
+                    if (xlWorksheet != null)
                     {
                         Marshal.ReleaseComObject(xlWorksheet);
                     }
 
                     //close and release
-                    if(xlWorkbook != null)
+                    if (xlWorkbook != null)
                     {
                         xlWorkbook.Close();
                         Marshal.ReleaseComObject(xlWorkbook);
@@ -117,7 +115,7 @@ namespace TestAddIn
                 }
             }
 
-            
+
         }
 
         private void btnAddBarcode_Click(object sender, RibbonControlEventArgs e)
