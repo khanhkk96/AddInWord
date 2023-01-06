@@ -85,7 +85,9 @@ namespace TestAddIn
                         cboTag.Items.Add(item);
                     }
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) {
+                   Console.WriteLine(ex.Message);
+                }
                 finally
                 {
                     //cleanup
@@ -116,6 +118,32 @@ namespace TestAddIn
             }
 
             
+        }
+
+        private void btnAddBarcode_Click(object sender, RibbonControlEventArgs e)
+        {
+            var Application = Globals.ThisAddIn.Application;
+            int start = Application.Selection.Range.Start;
+            int end = Application.Selection.Range.End;
+            Word.Range rng = Application.ActiveDocument.Range(start, end);
+            rng.Select();
+            rng.Text = "{%barcode_image}";
+        }
+
+        private void btnSetupPage_Click(object sender, RibbonControlEventArgs e)
+        {
+            var Application = Globals.ThisAddIn.Application;
+            int start = 0;
+            int end = 0;
+            Word.Range rng = Application.ActiveDocument.Range(start, end);
+            rng.Select();
+            rng.Text = "{#data}";
+
+            int startEndLine = Application.ActiveDocument.Paragraphs.Last.Range.Start;
+            int endEndLine = Application.ActiveDocument.Paragraphs.Last.Range.Start;
+            Word.Range rngEndLine = Application.ActiveDocument.Range(startEndLine, endEndLine);
+            rngEndLine.Select();
+            rngEndLine.Text = "{@raw_loop_pagebreak}\n{/}";
         }
     }
 }
