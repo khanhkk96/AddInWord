@@ -125,7 +125,18 @@ namespace TestAddIn
             int end = Application.Selection.Range.End;
             Word.Range rng = Application.ActiveDocument.Range(start, end);
             rng.Select();
-            rng.Text = "{%barcode_image}";
+            //rng.Text = "{%barcode_image}";
+            Word.Range tableLocation = Application.ActiveDocument.Range(start, end);
+            var table = rng.Tables.Add(tableLocation, 1, 1);
+            table.Columns[1].SetWidth(170f, WdRulerStyle.wdAdjustProportional);
+            table.AllowAutoFit = true;
+            table.Rows[1].SetHeight(46f, WdRowHeightRule.wdRowHeightAuto);
+            table.Cell(1, 1).Range.Text = "{%barcode_image}";
+            table.Cell(1, 1).TopPadding = 0;
+            table.Cell(1, 1).BottomPadding = 0;
+            table.Cell(1, 1).LeftPadding = 0;
+            table.Cell(1, 1).RightPadding = 0;
+            table.Cell(1, 1).VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalBottom;
         }
 
         private void btnSetupPage_Click(object sender, RibbonControlEventArgs e)
