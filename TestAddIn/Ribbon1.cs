@@ -1,9 +1,11 @@
 ﻿using Microsoft.Office.Interop.Word;
 using Microsoft.Office.Tools.Ribbon;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -114,8 +116,6 @@ namespace TestAddIn
                     Marshal.ReleaseComObject(xlApp);
                 }
             }
-
-
         }
 
         private void btnAddBarcode_Click(object sender, RibbonControlEventArgs e)
@@ -125,18 +125,17 @@ namespace TestAddIn
             int end = Application.Selection.Range.End;
             Word.Range rng = Application.ActiveDocument.Range(start, end);
             rng.Select();
-            //rng.Text = "{%barcode_image}";
-            Word.Range tableLocation = Application.ActiveDocument.Range(start, end);
-            var table = rng.Tables.Add(tableLocation, 1, 1);
-            table.Columns[1].SetWidth(170f, WdRulerStyle.wdAdjustProportional);
-            table.AllowAutoFit = true;
-            table.Rows[1].SetHeight(46f, WdRowHeightRule.wdRowHeightAuto);
-            table.Cell(1, 1).Range.Text = "{%barcode_image}";
-            table.Cell(1, 1).TopPadding = 0;
-            table.Cell(1, 1).BottomPadding = 0;
-            table.Cell(1, 1).LeftPadding = 0;
-            table.Cell(1, 1).RightPadding = 0;
-            table.Cell(1, 1).VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalBottom;
+            rng.Text = "{%barcode_image}";
+            rng.Paragraphs.LineSpacingRule = WdLineSpacing.wdLineSpaceSingle;
+            //Word.Range tableLocation = Application.ActiveDocument.Range(start, end);
+            //var table = rng.Tables.Add(tableLocation, 1, 1);
+            //table.Columns[1].SetWidth(222f, WdRulerStyle.wdAdjustSameWidth);
+            //table.AllowAutoFit = true;
+            //table.Rows[1].SetHeight(46f, WdRowHeightRule.wdRowHeightAtLeast);
+            //table.Cell(1, 1).Range.Text = "{%barcode_image}";
+            //table.Cell(1, 1).LeftPadding = 0;
+            //table.Cell(1, 1).RightPadding = 0;
+            //table.Cell(1, 1).VerticalAlignment = WdCellVerticalAlignment.wdCellAlignVerticalBottom;
         }
 
         private void btnSetupPage_Click(object sender, RibbonControlEventArgs e)
@@ -148,11 +147,11 @@ namespace TestAddIn
             rng.Select();
             rng.Text = "{#data}";
 
-            int startEndLine = Application.ActiveDocument.Paragraphs.Last.Range.Start;
-            int endEndLine = Application.ActiveDocument.Paragraphs.Last.Range.Start;
+            int startEndLine = Application.ActiveDocument.Paragraphs.Last.Range.End - 1;
+            int endEndLine = Application.ActiveDocument.Paragraphs.Last.Range.End - 1;
             Word.Range rngEndLine = Application.ActiveDocument.Range(startEndLine, endEndLine);
             rngEndLine.Select();
-            rngEndLine.Text = "{@raw_loop_pagebreak}\n{/}";
+            rngEndLine.Text = "\n{@raw_loop_pagebreak}\n{/}";
         }
     }
 }

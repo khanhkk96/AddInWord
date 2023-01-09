@@ -39,12 +39,13 @@
             Microsoft.Office.Tools.Ribbon.RibbonDropDownItem ribbonDropDownItemImpl2 = this.Factory.CreateRibbonDropDownItem();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.box4 = this.Factory.CreateRibbonBox();
+            this.box6 = this.Factory.CreateRibbonBox();
             this.label1 = this.Factory.CreateRibbonLabel();
             this.btnAddTagList = this.Factory.CreateRibbonButton();
-            this.box1 = this.Factory.CreateRibbonBox();
+            this.box4 = this.Factory.CreateRibbonBox();
             this.cboTag = this.Factory.CreateRibbonComboBox();
             this.btnInsertText = this.Factory.CreateRibbonButton();
+            this.box1 = this.Factory.CreateRibbonBox();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.box5 = this.Factory.CreateRibbonBox();
             this.label2 = this.Factory.CreateRibbonLabel();
@@ -55,8 +56,8 @@
             this.box2 = this.Factory.CreateRibbonBox();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
+            this.box6.SuspendLayout();
             this.box4.SuspendLayout();
-            this.box1.SuspendLayout();
             this.group2.SuspendLayout();
             this.box5.SuspendLayout();
             this.box3.SuspendLayout();
@@ -72,20 +73,21 @@
             // 
             // group1
             // 
+            this.group1.Items.Add(this.box6);
             this.group1.Items.Add(this.box4);
             this.group1.Items.Add(this.box1);
             this.group1.Label = "Thẻ gán dữ liệu";
             this.group1.Name = "group1";
             // 
-            // box4
+            // box6
             // 
-            this.box4.Items.Add(this.label1);
-            this.box4.Items.Add(this.btnAddTagList);
-            this.box4.Name = "box4";
+            this.box6.Items.Add(this.label1);
+            this.box6.Items.Add(this.btnAddTagList);
+            this.box6.Name = "box6";
             // 
             // label1
             // 
-            this.label1.Label = "Thêm thẻ gán từ excel: ";
+            this.label1.Label = "B1-Thêm thẻ dữ liệu từ excel:";
             this.label1.Name = "label1";
             // 
             // btnAddTagList
@@ -96,18 +98,18 @@
             this.btnAddTagList.ShowImage = true;
             this.btnAddTagList.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnAddTagList_Click);
             // 
-            // box1
+            // box4
             // 
-            this.box1.Items.Add(this.cboTag);
-            this.box1.Items.Add(this.btnInsertText);
-            this.box1.Name = "box1";
+            this.box4.Items.Add(this.cboTag);
+            this.box4.Items.Add(this.btnInsertText);
+            this.box4.Name = "box4";
             // 
             // cboTag
             // 
             ribbonDropDownItemImpl1.Label = "--Thêm thẻ dữ liệu--";
             this.cboTag.Items.Add(ribbonDropDownItemImpl1);
             this.cboTag.Items.Add(ribbonDropDownItemImpl2);
-            this.cboTag.Label = "Thẻ: ";
+            this.cboTag.Label = "B2-Chọn thẻ:";
             this.cboTag.Name = "cboTag";
             this.cboTag.Text = null;
             // 
@@ -118,6 +120,10 @@
             this.btnInsertText.Name = "btnInsertText";
             this.btnInsertText.ShowImage = true;
             this.btnInsertText.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnInsertText_Click);
+            // 
+            // box1
+            // 
+            this.box1.Name = "box1";
             // 
             // group2
             // 
@@ -135,7 +141,7 @@
             // 
             // label2
             // 
-            this.label2.Label = "Barcode: ";
+            this.label2.Label = "B3-Barcode:";
             this.label2.Name = "label2";
             // 
             // btnAddBarcode
@@ -154,7 +160,7 @@
             // 
             // label3
             // 
-            this.label3.Label = "Setup trang: ";
+            this.label3.Label = "B4-Setup trang:";
             this.label3.Name = "label3";
             // 
             // btnSetupPage
@@ -179,10 +185,10 @@
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.box6.ResumeLayout(false);
+            this.box6.PerformLayout();
             this.box4.ResumeLayout(false);
             this.box4.PerformLayout();
-            this.box1.ResumeLayout(false);
-            this.box1.PerformLayout();
             this.group2.ResumeLayout(false);
             this.group2.PerformLayout();
             this.box5.ResumeLayout(false);
@@ -211,6 +217,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonBox box2;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnAddBarcode;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSetupPage;
+        internal Microsoft.Office.Tools.Ribbon.RibbonBox box6;
     }
 
     partial class ThisRibbonCollection
