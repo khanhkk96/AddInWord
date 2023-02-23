@@ -1,11 +1,9 @@
 ﻿using Microsoft.Office.Interop.Word;
 using Microsoft.Office.Tools.Ribbon;
 using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using static System.Collections.Specialized.BitVector32;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -145,13 +143,17 @@ namespace TestAddIn
             int end = 0;
             Word.Range rng = Application.ActiveDocument.Range(start, end);
             rng.Select();
-            rng.Text = "{#data}";
+            rng.Text = "{#data}\n";
+            rng.Font.Size = 8;
 
             int startEndLine = Application.ActiveDocument.Paragraphs.Last.Range.End - 1;
             int endEndLine = Application.ActiveDocument.Paragraphs.Last.Range.End - 1;
-            Word.Range rngEndLine = Application.ActiveDocument.Range(startEndLine, endEndLine);
+            Word.Range rngEndLine = Application.ActiveDocument.Range(startEndLine);
             rngEndLine.Select();
             rngEndLine.Text = "\n{@raw_loop_pagebreak}\n{/}";
+            rngEndLine.Font.Size = 8;
+            rngEndLine.Paragraphs.SpaceBefore = 0;
+            rngEndLine.Paragraphs.SpaceAfter = 0;
         }
     }
 }
